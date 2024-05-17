@@ -1,0 +1,2 @@
+libgodot-cpp.windows.template_debug.x86_64.lib filter=lfs diff=lfs merge=lfs -text
+libgodot-cpp.windows.template_release.x86_64.lib filter=lfs diff=lfs merge=lfs -text

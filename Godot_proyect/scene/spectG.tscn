@@ -1,0 +1,140 @@
+[gd_scene load_steps=17 format=3 uid="uid://btjutj8p7m0ay"]
+
+[ext_resource type="Texture2D" uid="uid://ce0bpa4rm28rl" path="res://art/LizardfolkGladiator.png" id="1_buecw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqso0"]
+atlas = ExtResource("1_buecw")
+region = Rect2(0, 21, 22, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4v3r6"]
+atlas = ExtResource("1_buecw")
+region = Rect2(22, 21, 22, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yed6l"]
+atlas = ExtResource("1_buecw")
+region = Rect2(44, 21, 22, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifug8"]
+atlas = ExtResource("1_buecw")
+region = Rect2(66, 21, 22, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgchr"]
+atlas = ExtResource("1_buecw")
+region = Rect2(0, 0, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7wjq"]
+atlas = ExtResource("1_buecw")
+region = Rect2(22, 0, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aggiq"]
+atlas = ExtResource("1_buecw")
+region = Rect2(44, 0, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptfyj"]
+atlas = ExtResource("1_buecw")
+region = Rect2(66, 0, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u27qq"]
+atlas = ExtResource("1_buecw")
+region = Rect2(0, 42, 22, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv1ey"]
+atlas = ExtResource("1_buecw")
+region = Rect2(22, 42, 22, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg3rj"]
+atlas = ExtResource("1_buecw")
+region = Rect2(44, 42, 22, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c40rx"]
+atlas = ExtResource("1_buecw")
+region = Rect2(66, 42, 22, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_arrjq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqso0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4v3r6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yed6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifug8")
+}],
+"loop": true,
+"name": &"stat_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgchr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7wjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aggiq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptfyj")
+}],
+"loop": true,
+"name": &"stat_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u27qq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yv1ey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hg3rj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c40rx")
+}],
+"loop": true,
+"name": &"stat_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p6pgp"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ad0ih"]
+radius = 8.06226
+
+[node name="spectG" type="spectG"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_arrjq")
+animation = &"stat_right"
+frame_progress = 0.805871
+
+[node name="detection_area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="detection_area"]
+polygon = PackedVector2Array(0, -55, 79, -55, 79, 55, 0, 55, 0, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_p6pgp")
+
+[node name="spectG_hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spectG_hitbox"]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_ad0ih")
+
+[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
