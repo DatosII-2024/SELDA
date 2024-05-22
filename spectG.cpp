@@ -1,4 +1,4 @@
-#include "spectG.h"
+#include "SpectG.h"
 
 void spectG::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("_init"), &spectG::_init);
@@ -18,7 +18,7 @@ void spectG::_physics_process(float delta) {
 	try {
 		if (player_chase) {
 			if (player) {
-				//set_position(get_position() + (player->get_position() - get_position()) / SPEED);
+				set_position(get_position() + (player->get_position() - get_position()) / SPEED);
 				if ((player->get_position() - get_position())[0] < 0) {
 					anim_sprite->set_flip_h(true);
 					detector->set_rotation_degrees(180);
@@ -27,14 +27,6 @@ void spectG::_physics_process(float delta) {
 					anim_sprite->set_flip_h(false);
 					detector->set_rotation_degrees(0);
 				}
-				if ((player->get_position() - get_position())[1] < 0) {
-					anim_sprite->play("stat_up");
-					detector->set_rotation_degrees(-90);
-				}
-				else {
-					anim_sprite->play("stat_down");
-					detector->set_rotation_degrees(90);
-				}
 			}
 		}
 		else {
@@ -42,7 +34,7 @@ void spectG::_physics_process(float delta) {
 		}
 	}
 	catch (const std::exception e) {
-		
+
 	}
 }
 

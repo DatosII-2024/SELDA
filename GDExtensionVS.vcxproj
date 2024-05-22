@@ -139,8 +139,10 @@
   <ItemGroup>
     <ClCompile Include="CuboExample.cpp" />
     <ClCompile Include="GDExample.cpp" />
+    <ClCompile Include="GDExtensionVS.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="register_types.cpp" />
+    <ClCompile Include="SpectG.cpp" />
     <ClCompile Include="VSTestGDnative.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -148,7 +150,7 @@
     <ClInclude Include="GDExample.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="register_types.h" />
-    <ClInclude Include="spectG.h" />
+    <ClInclude Include="SpectG.h" />
     <ClInclude Include="VSTestGDnative.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

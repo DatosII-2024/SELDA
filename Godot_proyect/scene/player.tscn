@@ -420,8 +420,9 @@ animations = [{
 radius = 13.0
 
 [node name="Player" type="Player"]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 13
+platform_wall_layers = 1
 script = ExtResource("1_fhc81")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -442,6 +443,8 @@ position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_vu5ag")
 
 [node name="attack_cooldown" type="Timer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://btjutj8p7m0ay"]
+[gd_scene load_steps=18 format=3 uid="uid://btjutj8p7m0ay"]
 
 [ext_resource type="Texture2D" uid="uid://ce0bpa4rm28rl" path="res://art/LizardfolkGladiator.png" id="1_buecw"]
+[ext_resource type="Script" path="res://Scripts/spectG.gd" id="1_w0rlj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oqso0"]
 atlas = ExtResource("1_buecw")
@@ -111,26 +112,29 @@ radius = 5.0
 radius = 8.06226
 
 [node name="spectG" type="spectG"]
+collision_layer = 4
+collision_mask = 27
+platform_wall_layers = 1
+script = ExtResource("1_w0rlj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_arrjq")
 animation = &"stat_right"
-frame_progress = 0.805871
 
 [node name="detection_area" type="Area2D" parent="."]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="detection_area"]
-polygon = PackedVector2Array(0, -55, 79, -55, 79, 55, 0, 55, 0, 0)
+polygon = PackedVector2Array(0, -54, 79, -55, 79, 55, 0, 54, -6, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
 shape = SubResource("CircleShape2D_p6pgp")
 
 [node name="spectG_hitbox" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 4
+collision_layer = 32
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="spectG_hitbox"]
 position = Vector2(-1, 0)

@@ -1,4 +1,3 @@
-
 #ifndef SPECTG_H
 #define SPECTG_H
 
@@ -33,5 +32,3 @@ private:
 
 
 #endif // !SPECTG_H
-
-
