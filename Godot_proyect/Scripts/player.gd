@@ -86,15 +86,13 @@ func enemy_attack():
 		print(healt)
 
 func _on_hitbox_body_entered(body):
-	if body.has_mathod("spectG"):
-		print("body entered")
-		enemy_attack_inrange = true
+	print("body entered")
+	enemy_attack_inrange = true
 
 
 func _on_hitbox_body_exited(body):
-	if body.has_method("spectG"):
-		print("body exited")
-		enemy_attack_inrange = false
+	print("body exited")
+	enemy_attack_inrange = false
 
 
 func _on_attack_cooldown_timeout():
