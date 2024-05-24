@@ -1,8 +1,5 @@
 extends CharacterBody2D
 
-
-var enemy_attack_inrange = false
-var enemy_attack_cooldown = true
 var healt = 4
 var player_alive = true
 
@@ -11,7 +8,6 @@ var current_direction = "none"
 
 func _physics_process(delta):
 	player_muvement()
-	enemy_attack()
 	
 func player_muvement():
 	if Input.is_action_pressed("rigth"):
@@ -78,22 +74,3 @@ func play_anim(movement):
 		elif movement == 2:
 			anim.play("attack_up")
 
-func enemy_attack():
-	if enemy_attack_inrange and enemy_attack_cooldown == true:
-		healt -=1
-		enemy_attack_cooldown = false
-		$attack_cooldown.start()
-		print(healt)
-
-func _on_hitbox_body_entered(body):
-	print("body entered")
-	enemy_attack_inrange = true
-
-
-func _on_hitbox_body_exited(body):
-	print("body exited")
-	enemy_attack_inrange = false
-
-
-func _on_attack_cooldown_timeout():
-	enemy_attack_cooldown = true

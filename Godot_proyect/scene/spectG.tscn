@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://btjutj8p7m0ay"]
+[gd_scene load_steps=17 format=3 uid="uid://btjutj8p7m0ay"]
 
 [ext_resource type="Texture2D" uid="uid://ce0bpa4rm28rl" path="res://art/LizardfolkGladiator.png" id="1_buecw"]
-[ext_resource type="Script" path="res://Scripts/spectG.gd" id="1_w0rlj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oqso0"]
 atlas = ExtResource("1_buecw")
@@ -112,10 +111,10 @@ radius = 5.0
 radius = 8.06226
 
 [node name="spectG" type="spectG"]
+position = Vector2(1.06499e-43, 1.33123e-43)
 collision_layer = 4
 collision_mask = 27
 platform_wall_layers = 1
-script = ExtResource("1_w0rlj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_arrjq")
