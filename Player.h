@@ -6,6 +6,7 @@
 #include <character_body2d.hpp>
 #include <Input.hpp>
 #include <animated_sprite2d.hpp>
+#include <glog/logging.h>
 
 using namespace godot;
 

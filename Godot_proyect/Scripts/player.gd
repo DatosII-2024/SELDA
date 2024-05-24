@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
-var healt = 4
-var player_alive = true
+var healt = 5
 
 const SPEED = 100.0
 var current_direction = "none"

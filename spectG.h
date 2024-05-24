@@ -15,7 +15,7 @@ class spectG: public CharacterBody2D {
 
 public:
 	static void _bind_methods();
-	void _init();
+	/*void _init();
 	void _ready();
 	void _physics_process(float delta);
 	Array find_path(Vector2 start_position, Vector2 target_position);
@@ -29,7 +29,7 @@ private:
 	bool player_chase;
 	Node2D* player;
 	TileMap* tilemap;
-	Array path;
+	Array path;*/
 
 };
 

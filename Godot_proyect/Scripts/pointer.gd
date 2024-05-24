@@ -1,14 +1,12 @@
 extends Sprite2D
 
-const SPEED = 17.0
+const SPEED = 6.0
+var player
 
-
+func _ready():
+	player = get_parent().get_parent().get_parent().get_node("Player")
+	
 func _process(delta):
-	if Input.is_action_pressed("rigth"):
-		position.x += SPEED*delta
-	elif Input.is_action_pressed("left"):
-		position.x -= SPEED*delta
-	elif Input.is_action_pressed("down"):
-		position.y += SPEED*delta
-	elif Input.is_action_pressed("up"):
-		position.y -= SPEED*delta
+	var pos = player.global_position
+	position.x = pos.x/SPEED
+	position.y = pos.y/SPEED

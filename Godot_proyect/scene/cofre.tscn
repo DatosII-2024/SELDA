@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbbdtohycsfb4"]
+
+[ext_resource type="Texture2D" uid="uid://bsrdoax3ag6sp" path="res://art/cofre.png" id="1_gab8o"]
+[ext_resource type="Script" path="res://Scripts/Cofre.gd" id="2_jahjx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qj3wv"]
+size = Vector2(17, 16)
+
+[node name="Cofre" type="Sprite2D"]
+texture = ExtResource("1_gab8o")
+hframes = 2
+vframes = 3
+frame = 1
+script = ExtResource("2_jahjx")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_qj3wv")

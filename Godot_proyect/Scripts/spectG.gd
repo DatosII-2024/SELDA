@@ -4,6 +4,10 @@ var tilemap
 var player
 var path = []
 var max_speed = 200
+var pathfinding_interval = 0.5  # Intervalo de tiempo entre las búsquedas de ruta
+var time_since_last_pathfinding = 0.0
+var attac = false
+var llamado = true
 
 func _ready():
 	# Buscar el nodo "World" en la jerarquía de nodos
@@ -16,17 +20,22 @@ func _ready():
 		player = world.get_node("Player")
 
 func _process(delta):
-	if player and path.size() == 0:
+	time_since_last_pathfinding += delta
+	if player && time_since_last_pathfinding >= pathfinding_interval:
 		# Encuentra la ruta desde la posición del enemigo hasta la posición del jugador
 		var enemy_position = global_position
 		var player_position = player.global_position
+		if (enemy_position == player_position):
+			player.healt -=1
+			print(player.healt)
 		path = find_path(enemy_position, player_position)
+		time_since_last_pathfinding = 0.0
 	
 	# Sigue la ruta si se encontró una
-	if path.size() > 0:
+	if path.size() > 0 and path.size()<24:
 		# Mueve al enemigo hacia el siguiente nodo en la ruta
 		var next_node = path[0]
-		var next_position = tilemap.map_to_world(next_node)
+		var next_position = tilemap.map_to_local(next_node)
 		
 		# Calcula la dirección hacia el siguiente nodo
 		var direction = (next_position - global_position).normalized()
@@ -71,7 +80,7 @@ func find_path(start_position, target_position):
 			var current = current_node
 			while current != null:
 				path_reverse.append(current.position)
-				current = current.parent
+				current = current.get_parent()
 			path = path_reverse.duplicate()
 			path.reverse()
 			return path
@@ -90,7 +99,10 @@ func find_path(start_position, target_position):
 			# Si el vecino está en la lista abierta y tiene un costo menor, lo actualizamos
 			var neighbor_node = Node2D.new()
 			neighbor_node.position = neighbor
-			neighbor_node.parent = current_node
+			#neighbor_node.set_parent(current_node)
+			if neighbor_node.get_parent():
+				neighbor_node.get_parent().remove_child(neighbor_node)
+			current_node.add_child(neighbor_node)
 			open_list.append(neighbor_node)
 
 	# Si no se encuentra un camino, se devuelve una lista vacía
@@ -115,5 +127,22 @@ func contains_node(node_list, position):
 
 # Función para verificar si un tile es transitable
 func is_tile_walkable(position):
-	var tile_id = tilemap.get_cellv(position)
-	return tile_id != -1  # Si el tile_id es -1, significa que no hay tile en esa posición
+	var tile_id = tilemap.get_cell_source_id(0,Vector2i(position[0],position[1]))
+	if tile_id == -1:
+		return false  # Si el tile_id es -1, significa que no hay tile en esa posición
+	return tilemap.tile_set.get_physics_layer_collision_layer(tile_id)==1
+
+
+func _on_spect_g_hitbox_body_entered(body):
+	pass # Replace with function body.
+
+
+func _on_spect_g_hitbox_body_exited(body):
+	if body == player and attac:
+		player.healt -= 1
+	$Timer.ready
+	
+
+
+func _on_timer_timeout():
+	attac = true

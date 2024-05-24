@@ -2,7 +2,7 @@
 
 void spectG::_bind_methods() {
 
-
+	{
 	/*ClassDB::bind_method(D_METHOD("_init"), &spectG::_init);
 	ClassDB::bind_method(D_METHOD("find_path"), &spectG::find_path);
 	ClassDB::bind_method(D_METHOD("get_neighbors"), &spectG::get_neighbors);
@@ -172,5 +172,5 @@ bool spectG::is_tile_walkable(Vector2 position)
 	int tile_id = tilemap->get_cell_source_id(1,pos);
 	return tile_id != -1;
 }*/
-}
+
 
